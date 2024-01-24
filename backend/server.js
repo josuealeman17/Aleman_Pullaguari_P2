@@ -44,7 +44,7 @@ almacenarEvaluacion(evaluacion);
 // Función para almacenar la evaluación
 function almacenarEvaluacion(evaluacion) {
   const evaluacionJSON = JSON.stringify(evaluacion);
-  const filePath = path.join(__dirname, "database", "evaluacion.json");
+  const filePath = path.join(__dirname, "../database", "evaluacion.json");
   fs.writeFile(filePath, evaluacionJSON, (err) => {
     if (err) {
       console.error("Error al almacenar la evaluación:", err);
