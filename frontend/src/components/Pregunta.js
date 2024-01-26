@@ -16,7 +16,7 @@ const Pregunta = ({ index, questionData, onChange, onNextQuestion, isLastQuestio
   };
 
   return (
-    <div>
+    <div className='pregunta'>
       <h4>Pregunta {index + 1}</h4>
       <label>
         Pregunta:
