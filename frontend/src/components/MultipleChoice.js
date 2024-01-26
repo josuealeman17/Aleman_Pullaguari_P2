@@ -1,14 +1,14 @@
-// MultipleChoice.js
-
-import React from "react";
+import React, { useState } from "react";
 import Profesor from "./Profesor";
 import Quiz from "./Quiz";
+import '../App.css'
 
 const MultipleChoice = ({ onAddQuestion }) => {
-  const [currentSection, setCurrentSection] = React.useState(0);
-  const [professorName, setProfessorName] = React.useState("");
-  const [numQuestions, setNumQuestions] = React.useState(0);
-  const [evaluationCompleted, setEvaluationCompleted] = React.useState(false);
+  const [currentSection, setCurrentSection] = useState(0);
+  const [professorName, setProfessorName] = useState("");
+  const [numQuestions, setNumQuestions] = useState(0);
+  const [evaluationCompleted, setEvaluationCompleted] = useState(false);
+  const [questions, setQuestions] = useState([]);
 
   const handleProfessorNameSubmit = (name) => {
     setProfessorName(name);
@@ -16,7 +16,7 @@ const MultipleChoice = ({ onAddQuestion }) => {
   };
 
   const handleQuizSubmit = (questions) => {
-    onAddQuestion({ professorName, questions });
+    setQuestions(questions);
     setCurrentSection(0);
     setProfessorName("");
     setNumQuestions(0);
@@ -40,10 +40,32 @@ const MultipleChoice = ({ onAddQuestion }) => {
   const resetEvaluation = () => {
     setEvaluationCompleted(false);
     setCurrentSection(0);
+    setQuestions([]);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/evaluaciones", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ profesor: professorName, preguntas: questions }),
+      });
+      if (response.ok) {
+        alert("Evaluación guardada exitosamente");
+        resetEvaluation();
+      } else {
+        throw new Error("Error al guardar la evaluación");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error al guardar la evaluación");
+    }
   };
 
   return (
-    <div>
+    <div className="multiple__choice">
       {currentSection === 0 && (
         <Profesor onProfessorNameSubmit={handleProfessorNameSubmit} />
       )}
@@ -72,7 +94,8 @@ const MultipleChoice = ({ onAddQuestion }) => {
         <div>
           <h3>Evaluación completada</h3>
           <p>Gracias por agregar la evaluación, {professorName}.</p>
-          <button onClick={resetEvaluation}>Agregar otra evaluación</button>
+          <hr />
+          <button onClick={handleSubmit}>Guardar Evaluación</button>
         </div>
       )}
     </div>

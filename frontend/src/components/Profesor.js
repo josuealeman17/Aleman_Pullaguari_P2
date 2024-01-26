@@ -1,9 +1,11 @@
-// Profesor.js
-
 import React, { useState } from 'react';
 
-const Profesor = ({ onProfessorNameSubmit }) => {
+const Profesor = ({ onProfessorNameSubmit}) => {
   const [professorName, setProfessorName] = useState('');
+
+  const handleProfessorNameChange = (e) => {
+    setProfessorName(e.target.value);
+  }
 
   const handleProfessorNameSubmit = () => {
     if (professorName === '') {
@@ -21,7 +23,7 @@ const Profesor = ({ onProfessorNameSubmit }) => {
         <input
           type="text"
           value={professorName}
-          onChange={(e) => setProfessorName(e.target.value)}
+          onChange={handleProfessorNameChange}
         />
       </label>
       <button onClick={handleProfessorNameSubmit}>Siguiente</button>

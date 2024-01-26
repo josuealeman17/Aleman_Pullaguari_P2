@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Pregunta from './Pregunta';
 
+
 const Quiz = ({ numQuestions, onQuizSubmit, onNextSection }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState(Array.from({ length: numQuestions }, () => ({ question: '', options: ['', '', '', ''] })));
@@ -15,7 +16,7 @@ const Quiz = ({ numQuestions, onQuizSubmit, onNextSection }) => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       onQuizSubmit(questions);
-      onNextSection(); // Avanzar a la siguiente sección después de completar todas las preguntas
+      onNextSection(); 
     }
   };
 

@@ -1,5 +1,3 @@
-// Pregunta.js
-
 import React from 'react';
 
 const Pregunta = ({ index, questionData, onChange, onNextQuestion, isLastQuestion }) => {

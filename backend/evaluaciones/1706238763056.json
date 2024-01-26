@@ -1,0 +1,23 @@
+{
+  "profesor": "",
+  "preguntas": [
+    {
+      "question": "Como se llama la Capital de Ecuador",
+      "options": [
+        "Quito",
+        "Cuenca",
+        "Mindo",
+        "Tulcan"
+      ]
+    },
+    {
+      "question": "Que geometria ayudo a desarrollar la teoria de la relatividad?",
+      "options": [
+        "Riemman",
+        "Perelman",
+        "Euclides",
+        "Marie Curie"
+      ]
+    }
+  ]
+}
