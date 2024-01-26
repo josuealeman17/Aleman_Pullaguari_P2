@@ -2,6 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
+const multipleChoice = require("../frontend/src/components/multiplechoice");
+const pregunta = require("../frontend/src/components/pregunta");
+const profesor = require("../frontend/src/components/profesor");
 
 const app = express();
 app.use(express.json());
